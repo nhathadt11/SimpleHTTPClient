@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/nhathadt11/SimpleHTTPClient/issues"
   },
-  "homepage": "https://github.com/nhathadt11/SimpleHTTPClient#readme"
+  "homepage": "https://github.com/nhathadt11/SimpleHTTPClient#readme",
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0"
+  }
 }
