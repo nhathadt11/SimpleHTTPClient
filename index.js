@@ -8,7 +8,9 @@
       get: _get,
       post: _post,
       put: _put,
+      head: _head,
       delete: _delete,
+      patch: _patch,
       options: _options,
     }
 
@@ -24,12 +26,20 @@
       throw new Error('Unimplemented PUT method');
     }
 
+    function _head(url, configs) {
+      throw new Error('Unimplemented HEAD method');
+    }
+
     function _delete(url, configs) {
       throw new Error('Unimplemented DELETE method');
     }
 
+    function _patch(url, configs) {
+      throw new Error('Unimplemented PATCH method');
+    }
+
     function _options(url, configs) {
-      throw new Error('Unimplemented OPTION method');
+      throw new Error('Unimplemented OPTIONS method');
     }
   }
 
@@ -193,6 +203,9 @@
     GET: 'GET',
     POST: 'POST',
     PUT: 'PUT',
+    HEAD: 'HEAD',
     DELETE: 'DELETE',
+    PATCH: 'PATCH',
+    OPTIONS: 'OPTIONS',
   }
 })(window);
