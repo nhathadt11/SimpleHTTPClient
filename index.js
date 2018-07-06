@@ -90,7 +90,9 @@
 
     var queryTokens = [];
     for (const key in params) {
-      queryTokens.push(key + '=' + params[key]);
+      if (isVisibleContent(params[key])) {
+        queryTokens.push(key + '=' + params[key]);
+      }
     }
     
     var queryString = queryTokens.join('&');
@@ -182,6 +184,10 @@
 
   function isString(val) {
     return typeof val === 'string';
+  }
+
+  function isVisibleContent(val) {
+    return (val !== undefined) && (val !== null) && (String(val).trim() !== '');
   }
 
   function indexOf(content, sub) {
