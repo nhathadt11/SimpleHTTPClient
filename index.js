@@ -131,14 +131,14 @@
     }
 
     function send() {
+      handleAfter();
+      handleBut();
+      handleWhatever();
+
       try {
         xhr.send();
-        handleAfter();
       } catch (e) {
-        handleBut();
         console.error(e);
-      } finally {
-        handleWhatever();
       }
     }
 
@@ -147,8 +147,8 @@
         if (!isFunction(_self._after)) return;
 
         if (
-          this.readyState === XMLHttpRequest.DONE &&
-          (this.status >= HttpStatus.OK && this.status < HttpStatus.BAD_REQUEST)
+          (this.readyState === XMLHttpRequest.DONE) &&
+          (this.status === HttpStatus.OK || this.status === HttpStatus.NOT_MODIFIED)
         ) {
           _self._after(this.responseText, this);
         }
@@ -166,7 +166,9 @@
     function handleWhatever() {
       if (!isFunction(_self._whatever)) return;
 
-      _self._whatever(this.responseText, this);
+      xhr.onloadend = function() {
+        _self._whatever(this.responseText, this);
+      }
     }
   }
 
@@ -200,6 +202,7 @@
 
   var HttpStatus = {
     OK: 200,
+    NOT_MODIFIED: 304,
     BAD_REQUEST: 400,
     NOT_FOUND: 404,
     INTERNAL_SERVER_ERROR: 500,
