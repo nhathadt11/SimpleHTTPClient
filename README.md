@@ -3,7 +3,7 @@ An XHR-based HTTP client inspired by promise-based HTTP client
 
 ## How to use?
 ```
-<script src="https://raw.githubusercontent.com/nhathadt11/SimpleHTTPClient/master/index.js" />
+<script src="https://raw.githubusercontent.com/nhathadt11/SimpleHTTPClient/master/index.js" type="text/javascript" />
 ```
 ```
 const client = new http.SimpleHTTPClient();
