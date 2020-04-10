@@ -100,20 +100,20 @@
   }
 
   function AsyncResult(xhr) {
-    var _after;
+    var _later;
     var _but;
     var _whatever;
     var _self = this;
 
     return {
-      after: after,
+      later: later,
       but: but,
       whatever: whatever,
       send: send,
     }
 
-    function after(after) {
-      _self._after = after;
+    function later(later) {
+      _self._later = later;
 
       return this;
     }
@@ -131,7 +131,7 @@
     }
 
     function send() {
-      handleAfter();
+      handleLater();
       handleBut();
       handleWhatever();
 
@@ -142,15 +142,15 @@
       }
     }
 
-    function handleAfter() {
+    function handleLater() {
       xhr.onreadystatechange = function() {
-        if (!isFunction(_self._after)) return;
+        if (!isFunction(_self._later)) return;
 
         if (
           (this.readyState === XMLHttpRequest.DONE) &&
           (this.status === HttpStatus.OK || this.status === HttpStatus.NOT_MODIFIED)
         ) {
-          _self._after(this.responseText, this);
+          _self._later(this.responseText, this);
         }
       }
     }
